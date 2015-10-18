@@ -11,9 +11,25 @@ typedef your_vec2 Vec2;
 typedef your_color Color;
 */
 
+using Color = ::cocos2d::Color4F;
+using Vec2 = ::cocos2d::Vec2;
+
+#ifdef VASER_DEBUG
+#define DEBUG printf
+#else
+#define DEBUG ;//
+#endif
+
 namespace VASEr
 {
 const double vaser_pi=3.141592653589793;
+    
+    namespace VASErin
+    {	//VASEr internal namespace
+        extern const double vaser_min_alw; //smallest value not regarded as zero
+        extern const Color default_color;
+        extern const double default_weight;
+    }
 
 struct gradient_stop
 {

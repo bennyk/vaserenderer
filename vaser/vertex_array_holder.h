@@ -1,6 +1,14 @@
 #ifndef VASER_VERTEX_ARRAY_HOLDER_H
 #define VASER_VERTEX_ARRAY_HOLDER_H
 
+#include "point.h"
+#include "vaser.h"
+
+namespace VASEr
+{
+    namespace VASErin
+    {	//VASEr internal namespace
+
 class vertex_array_holder
 {
 public:
@@ -214,10 +222,8 @@ public:
 			jumping=true;
 		}
 	}
-	void draw()
-	{
-		backend::vah_draw(*this);
-	}
+    
+    void draw();
 	void draw_triangles()
 	{
 		Color col={1 , 0, 0, 0.5};
@@ -260,5 +266,8 @@ public:
 		color.swap(B.color);
 	}
 };
+        
+    }
+}
 
 #endif

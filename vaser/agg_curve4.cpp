@@ -73,6 +73,11 @@
 	#define M_PI 3.141592653589793238462643
 #endif
 
+namespace VASEr
+{
+    namespace VASErin
+    {	//VASEr internal namespace
+
 double calc_sq_distance(double x1, double y1, double x2, double y2)
 {
 	double dx = x2-x1;
@@ -325,3 +330,6 @@ int curve4_div(double x1, double y1,
 }
 
 #undef M_PI
+        
+    }
+}

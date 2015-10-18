@@ -1,6 +1,14 @@
+#include "vaser.h"
+
+namespace VASEr
+{
+
 namespace VASErin
 {	//VASEr internal namespace
-
+    
+    void gradient_apply(const gradient* gradp, Color* C, double* W, const double* L, int length, double path_length);
+    struct polyline_inopt;
+    
 class polyline_buffer
 {
 public:
@@ -17,7 +25,7 @@ public:
 		path_length=0.0;
 		L.push_back(0.0);
 	}
-	void point(double x, double y)
+	void point(float x, float y)
 	{
 		Vec2 V={x,y};
 		addvertex(V);
@@ -26,7 +34,7 @@ public:
 	{
 		addvertex(V);
 	}
-	static void point_cb(void* obj, double x, double y)
+	static void point_cb(void* obj, float x, float y)
 	{
 		polyline_buffer* This = (polyline_buffer*)obj;
 		Vec2 V={x,y};
@@ -54,8 +62,10 @@ public:
 		else
 			W.back()=ww;
 	}
-	void gradient( const gradient* grad)
+    void gradient( const gradient* grad)
 	{
+//        extern void gradient_apply(const gradient* gradp, Color* C, float* W, const double* L, int length, double path_length);
+
 		gradient_apply(grad,&C[0],&W[0],&L[0],N,path_length);
 	}
 	void draw(const polyline_opt* options)
@@ -169,4 +179,6 @@ void polybezier( const Vec2* P, Color cc, double ww, int length, const polybezie
 	stop[0].type = GS_rgba; stop[0].color = cc;
 	stop[1].type = GS_weight; stop[1].weight = ww;
 	VASErin::polybezier(P,&grad,length,options,0);
+}
+    
 }

@@ -1,3 +1,9 @@
+#include "vaser.h"
+#include "color.h"
+
+namespace VASEr
+{
+
 namespace VASErin
 {	//VASEr internal namespace
 
@@ -77,3 +83,5 @@ void gradient_apply(const gradient* gradp, Color* C, double* W, const double* L,
 }
 
 } //sub namespace VASErin
+
+}

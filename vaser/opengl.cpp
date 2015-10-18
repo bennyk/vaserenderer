@@ -1,4 +1,8 @@
 /* OpenGL 1.1 renderer and backend */
+#include "backend.h"
+
+namespace VASEr
+{
 
 namespace VASErin
 {	//VASEr internal namespace
@@ -7,14 +11,18 @@ void backend::vah_draw(vertex_array_holder& vah)
 {
 	if ( vah.count > 0) //save some effort
 	{
-		glVertexPointer(2, GL_FLOAT, 0, &vah.vert[0]);
-		glColorPointer (4, GL_FLOAT, 0, &vah.color[0]);
-		glDrawArrays (vah.glmode, 0, vah.count);
+//		glVertexPointer(2, GL_FLOAT, 0, &vah.vert[0]);
+//		glColorPointer (4, GL_FLOAT, 0, &vah.color[0]);
+        glVertexAttribPointer(cocos2d::GLProgram::VERTEX_ATTRIB_POSITION, 2, GL_FLOAT, GL_FALSE, 0, &vah.vert[0]);
+        glVertexAttribPointer(cocos2d::GLProgram::VERTEX_ATTRIB_COLOR, 4, GL_FLOAT, GL_FALSE, 0,  &vah.color[0]);
+
+        glDrawArrays (vah.glmode, 0, vah.count);
 	}
 }
 
 void backend::polyline( const Vec2* P, Color C, double W, int length, const polyline_opt*) //constant color and weight
 {
+    /*
 	int type=0;
 	if( sizeof(Vec2)==16)
 		type = GL_DOUBLE;
@@ -39,6 +47,7 @@ void backend::polyline( const Vec2* P, Color C, double W, int length, const poly
 		glEnd();
 	}
 	glLineWidth(1);
+     */
 }
 
 void swap_pixel(unsigned char* img, int w, int x1,int y1, int x2,int y2)
@@ -68,23 +77,23 @@ void renderer::init()
 
 void renderer::before()
 {
-	glEnableClientState(GL_VERTEX_ARRAY);
-	glEnableClientState(GL_COLOR_ARRAY);
-	
-	glDisableClientState(GL_EDGE_FLAG_ARRAY);
-	//glDisableClientState(GL_FOG_COORD_ARRAY);
-	glDisableClientState(GL_INDEX_ARRAY);
-	glDisableClientState(GL_NORMAL_ARRAY);
-	//glDisableClientState(GL_SECONDARY_COLOR_ARRAY);
-	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+//	glEnableClientState(GL_VERTEX_ARRAY);
+//	glEnableClientState(GL_COLOR_ARRAY);
+//	
+//	glDisableClientState(GL_EDGE_FLAG_ARRAY);
+//	//glDisableClientState(GL_FOG_COORD_ARRAY);
+//	glDisableClientState(GL_INDEX_ARRAY);
+//	glDisableClientState(GL_NORMAL_ARRAY);
+//	//glDisableClientState(GL_SECONDARY_COLOR_ARRAY);
+//	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 	
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 }
 void renderer::after()
 {
-	glDisableClientState(GL_VERTEX_ARRAY);
-	glDisableClientState(GL_COLOR_ARRAY);
+//	glDisableClientState(GL_VERTEX_ARRAY);
+//	glDisableClientState(GL_COLOR_ARRAY);
 	glDisable(GL_BLEND);
 }
 Image renderer::get_image()
@@ -105,3 +114,4 @@ Image renderer::get_image()
 	return im;
 }
 
+}

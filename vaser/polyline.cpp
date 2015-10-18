@@ -1,3 +1,10 @@
+#include "point.h"
+#include "vertex_array_holder.h"
+#include "color.h"
+
+namespace VASEr
+{
+
 namespace VASErin
 {	//VASEr internal namespace
 
@@ -2178,4 +2185,6 @@ void segment(  Vec2 P1, Vec2 P2, Color C, double W1, double W2, const polyline_o
 		AP[0] = P1; AC[0] = C; AW[0] = W1;
 		AP[1] = P2; AC[1] = C; AW[1] = W2;
 	polyline( AP, AC, AW, 2, options);
+}
+
 }

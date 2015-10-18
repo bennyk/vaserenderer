@@ -1,3 +1,13 @@
+#include "vaser.h"
+
+#ifndef vaser_point_h
+#define vaser_point_h
+
+namespace VASEr
+{
+    namespace VASErin
+    {	//VASEr internal namespace
+
 class Point : public Vec2
 {
 public:
@@ -256,3 +266,8 @@ public:
  * sizeof(Vec2)=16  sizeof(Point)=16
  * Point is not heavier, just more powerful :)
 */
+        
+    }
+}
+
+#endif
